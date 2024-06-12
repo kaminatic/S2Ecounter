@@ -16,6 +16,15 @@
             }
         }
 
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         body, html {
             margin: 0;
             padding: 0;
@@ -29,30 +38,41 @@
             width: 100%;
             height: 100vh;
             position: absolute;
-            left: 0 px;
-            top: 0 px;
+            left: 0px;
+            top: 0px;
             background: url('images/screen.png') no-repeat center center;
             background-size: contain;
+            z-index: 0;
         }
         #overlay-image {
             position: absolute;
-            width: 972px;
+            width: 982px;
             height: 962px;
             left: 896px; /* Moved 10px to the left */
-            top: 39px; /* Moved 20px down */
+            top: 69px; /* Moved 20px down */
             background: url('images/overlay.png') no-repeat center center;
             background-size: contain;
+            z-index: 0;
         }
-
+        #underlay-image {
+            position: absolute;
+            width: 982px;
+            height: 962px;
+            left: 886px;
+            top: 79px;
+            background: url('images/underlay.png') no-repeat center center;
+            background-size: contain;
+            z-index: -1; /* Ensure it is under the overlay but above the background */
+            animation: rotate 60s infinite linear; /* Rotate slowly */
+        }
         #counter-text {
             position: absolute;
             right: calc(100% - 771px); /* Aligning to the specific point */
-            top: 840px; /* Aligning to the specific point */
+            top: 870px; /* Aligning to the specific point */
             font-size: 65px;
             font-weight: 700;
             color: #3C0C3E;
         }
-
         .virus-container {
             position: absolute;
             width: 157px; /* Adjusted to match the specified size of 157px */
@@ -63,6 +83,7 @@
         .virus-image {
             width: 100%;
             height: 100%;
+            z-index: 1;
         }
         .virus-text {
             position: absolute;
@@ -73,6 +94,7 @@
             font-weight: 700;
             color: #FFFDFD;
             pointer-events: none;
+            z-index: 1;
         }
         #counter-container {
             width: 100%;
@@ -165,49 +187,45 @@
 </head>
 <body>
     <div id="image-container">
+        <div id="underlay-image"></div>
         <div id="overlay-image"></div>
         <div id="counter-text">CASES: 0</div>
-        <div class="virus-container" style="left: 916px; top: 424px;">
+        <div class="virus-container" style="left: 916px; top: 454px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">1</div>
         </div>
-        <div class="virus-container" style="left: 1033px; top: 552px;">
+        <div class="virus-container" style="left: 1033px; top: 852px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">2</div>
         </div>
-        <div class="virus-container" style="left: 1162px; top: 418px;">
+        <div class="virus-container" style="left: 1162px; top: 448px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">3</div>
         </div>
-        <div class="virus-container" style="left: 1403px; top: 552px;">
+        <div class="virus-container" style="left: 1403px; top: 582px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">4</div>
         </div>
-        <div class="virus-container" style="left: 908px; top: 787px;">
+        <div class="virus-container" style="left: 908px; top: 817px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">5</div>
         </div>
-        <div class="virus-container" style="left: 1650px; top: 423px;">
+        <div class="virus-container" style="left: 1650px; top: 453px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">6</div>
         </div>
-        <div class="virus-container" style="left: 1267px; top: 292px;">
+        <div class="virus-container" style="left: 1267px; top: 342px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">7</div>
         </div>
-        <div class="virus-container" style="left: 1399px; top: 423px;">
+        <div class="virus-container" style="left: 1399px; top: 453px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
             <div class="virus-text">8</div>
         </div>
-        <div class="virus-container" style="left: 1544px; top: 670px;">
+        <div class="virus-container" style="left: 1544px; top: 700px;">
             <img src="images/virus.svg" alt="virus" class="virus-image">
-            <div class="virus-text">9⋆</div>
+            <div class="virus-text">9</div>
         </div>
-    </div>
-    <div id="counter-container">
-        <h1>Live Counter: <span id="counter">0</span></h1>
-        <button onclick="incrementCounter()">Increment</button>
-        <button onclick="resetCounter()">Reset</button>
     </div>
 </body>
 </html>
